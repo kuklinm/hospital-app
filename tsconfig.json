@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "module": "es6",
+    "esModuleInterop": true,
+    "target": "es6",
+    "jsx": "react",
+    "removeComments": true,
+    "baseUrl": "./packages",
+    "paths": {
+      "@material-ui/core": ["./material-ui/src"],
+      "@material-ui/core/*": ["./material-ui/src/*"],
+      "@material-ui/lab": ["./material-ui-lab/src"],
+      "@material-ui/lab/*": ["./material-ui-lab/src/*"],
+      "@material-ui/styles": ["./material-ui-styles/src"],
+      "@material-ui/styles/*": ["./material-ui-styles/src/*"],
+      "@material-ui/system": ["./material-ui-system/src"],
+      "@material-ui/types": ["./material-ui-types"]
+    }
+  },
+  "include": [
+    "./src/client/**/*"
+  ],
+  "exclude": [
+    "./src/server",
+    "./src/client/serviceWorker.js",
+    "./node_modules",
+    "./__tests__",
+    "./dist",
+    "./__mocks__"
+  ],
+}
