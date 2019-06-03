@@ -41,6 +41,11 @@ class ProcedureAddFormComponent extends Component<MyComponentProps> {
   // @ts-ignore
   onSubmitForm = (values: Procedure, {setSubmitting}) => {
     const{addProcedureSuccess} = this.props;
+    const val = Object.values(values);
+    if(val.includes('')){
+      setSubmitting(false);
+      return;
+    }
     axios.post('/api/procedure', {...values, status: 'Planned'}).then(res => addProcedureSuccess(res.data));
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));

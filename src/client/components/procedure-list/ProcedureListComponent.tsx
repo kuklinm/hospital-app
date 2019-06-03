@@ -32,45 +32,36 @@ class ProcedureListComponent extends Component<MyComponentProps> {
     });
   }
 
-
-  handleRegisterClick = () => {
-    this.setState({registerNewProcedure: true});
-  };
-
-
   handleCancelClick = () => {
-    this.setState({registerNewProcedure: false});
+    this.setState({registerNewProcedure: !this.state.registerNewProcedure});
   };
 
   render() {
-    const registerNewProcedure = this.state.registerNewProcedure;
+    const {registerNewProcedure} = this.state;
+    const {procedures} = this.props;
+    const tableHeaders = ['Doctor', 'Patient', 'Room', 'Description', 'Start Time', 'Estimated Time', 'Status'];
 
     return (
-      <Box my={3}>{registerNewProcedure ? (<Button variant="outlined"
-                                                   color="secondary"
-                                                   onClick={this.handleCancelClick}>Cancel</Button>) :
-        (<Button variant="outlined"
-                 color="primary"
-                 onClick={this.handleRegisterClick}>Register new procedure</Button>)}
+      <Box my={3}>
+        <Button
+          variant="outlined"
+          color={registerNewProcedure ? 'secondary' : 'primary'}
+          onClick={this.handleCancelClick}>
+          {registerNewProcedure ? 'Cancel' : 'Register new procedure'}
+        </Button>
 
         {registerNewProcedure && <ProcedureAddFormContainer/>}
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Doctor</TableCell>
-              <TableCell align="right">Patient</TableCell>
-              <TableCell align="right">Room</TableCell>
-              <TableCell align="right">Description</TableCell>
-              <TableCell align="right">Start Time</TableCell>
-              <TableCell align="right">Estimated Time</TableCell>
-              <TableCell align="right">Status</TableCell>
+              {tableHeaders.map((header, i: number) => <TableCell align="right" key={i}>{header}</TableCell>)}
             </TableRow>
           </TableHead>
 
           <TableBody>
-            {this.props.procedures.map((procedure: Procedure) => {
+            {procedures.map((procedure: Procedure, i : number) => {
               return (<ProcedureComponent
-                key={procedure.id}
+                key={i}
                 procedure={procedure}/>)
             })}
           </TableBody>
